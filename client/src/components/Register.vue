@@ -1,6 +1,6 @@
 <template>
   <div>
-  <h1>Register</h1>
+  <h1>Dom rock - Login</h1>
 
    <input 
      type="email" 
@@ -18,30 +18,40 @@
      placeholder="password"/> 
      
      </br>
-
-    <button> Registro </button> 
+     </br>
+    <button @click="register"> Entrar </button> 
   </div>
 </template>
 
 <script>
+ import AuthenticationService from '@/services/AutheticationService'
 export default {
- 
   data () {
     return {
-      email: 'abc',
+      email: 'danielprogramic',
       password: '123'
     }
   },
-  watch: {
-    email (value){
-      console.log('email has changed' , value)
+  // watch: {
+  //   email (value){
+  //     console.log('email has changed' , value)
+  //   }
+  // },
+  methods:{
+  async register (){
+  const response = await AuthenticationService.register({
+      email:this.email,
+      password: this.password
+    })
+
+    console.log(response.data);
     }
   },
-  mounted(){
-    setTimeout(() =>{
-      this.email = 'hello world'
-    }, 1000)
-  }
+  // mounted(){
+  //   setTimeout(() =>{
+  //     this.email = 'hello world'
+  //   }, 1000)
+  // }
 }
 </script>
 

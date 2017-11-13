@@ -1,5 +1,5 @@
 //import service API do conector
-import Api from '@/service/Api'
+import Api from '@/services/Api'
 //forma para exportar autenticação 
 export default {
   register(credentials) {
