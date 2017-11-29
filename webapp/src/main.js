@@ -3,6 +3,10 @@ import Vue from 'vue'
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.css'
 
+
+import Notifications from 'vue-notification'
+
+
 import App from './App'
 import router from './router'
 
@@ -20,6 +24,8 @@ Vue.use(Vuetify, {
     neutro: '#fff',
   }
 })
+
+Vue.use(Notifications)
 
 Vue.config.productionTip = false
 
