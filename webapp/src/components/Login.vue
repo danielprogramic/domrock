@@ -1,6 +1,7 @@
 <template>
   <div class="login">
     <notifications group="auth" position="bottom right" />
+    <dr-notificar></dr-notificar>
     <v-layout column align-center>
       <v-flex>
         <v-card>
@@ -34,10 +35,15 @@
 </template>
 
 <script>
+
   import AuthenticationService from '@/services/AuthenticationService'
+  import Noficar from './utils/notificar/Notificar'
 
   export default {
     name: 'login',
+    components:{
+      'dr-notificar':Noficar 
+    },
     data() {
       return {
         msg: 'Digite seu e-mail e senha',
@@ -51,32 +57,29 @@
         this.$router.push('/relembrar-senha/')
       },
       async register () {
-        this.status = ! this.status;
-        
-        if(this.status){
-          var typenoti = 'error';
-        }else{
-          var typenoti = 'info';
-        }
-        this.$notify({
-          group: 'auth',
-          type: typenoti,
-          title: 'Aviso:',
-          text: 'Seu usuário ou senha não confere!',
-        });
-
         try {
           const response = await AuthenticationService.register({
             email: this.email,
-            password: this.password
+            password:  this.password
           });
-          
+          this.$notify({
+              group: 'auth',
+              type: 'info',
+              title: 'Sucesso!:',
+              text: 'Entrando no sistema...',
+            });
           // this.$store.dispatch('setToken', response.data.token)
           // this.$store.dispatch('setUser', response.data.user)
           // this.$router.push({
           //   name: 'songs'
           // })
         } catch (error) {
+            this.$notify({
+              group: 'auth',
+              type: 'error',
+              title: 'Erro.',
+              text: error.response.data.error,
+            });
           //this.error = error.response.data.error
         }
       }
