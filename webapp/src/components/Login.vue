@@ -4,45 +4,44 @@
     <dr-notificar></dr-notificar>
     <v-layout column align-center>
       <v-flex>
-        <v-card>
-          <v-card-media src="/static/bellrock.jpg" height="200px">
-          </v-card-media>
-          <v-card-title primary-title>
-            <div>
-              <h5 class="headline mb-3"><b>{{msg}}</b></h5>
-              <v-form
-                              name="tab-tracker-form"
-                              autocomplete="off">
-                </br>
-                <v-text-field label="Email"
-                              v-model="email">
-                </v-text-field>
-                <v-text-field label="Password"
-                              type="password"
-                              v-model="password"
-                              autocomplete="new-password"></v-text-field>
-              </v-form>     
-            </div>
-          </v-card-title>
-          <v-card-actions>
-            <v-btn @click="register" color="info">ENTRAR</v-btn>
-            <v-btn @click="onSetRouter()" color="info">ESQUECI MINHA SENHA</v-btn>
-          </v-card-actions>
-        </v-card>
+                <center>
+        <img src="/static/logo-domrock.png" alt="">
+        </center>
+        <v-form name="tab-tracker-form" autocomplete="off">
+          </br>
+          <v-text-field label="Email" v-model="email">
+          </v-text-field>
+          <v-text-field label="Password" type="password" v-model="password" autocomplete="new-password"></v-text-field>
+          <v-btn @click="onLogin" color="info">ENTRAR</v-btn>
+          <v-btn @click="onSetRouter()" color="info">ESQUECI MINHA SENHA</v-btn>
+        </v-form>
+        <!-- <v-card>
+            <v-card-media src="/static/bellrock.jpg" height="200px">
+            </v-card-media>
+            <v-card-title primary-title>
+              <div>
+                <h3 class="titlefont mb-3"><b>{{msg}}</b></h3>
+     
+              </div>
+            </v-card-title>
+            <v-card-actions>
+              <v-btn @click="onLogin" color="info">ENTRAR</v-btn>
+              <v-btn @click="onSetRouter()" color="info">ESQUECI MINHA SENHA</v-btn>
+            </v-card-actions>
+          </v-card> -->
       </v-flex>
     </v-layout>
   </div>
 </template>
 
 <script>
-
   import AuthenticationService from '@/services/AuthenticationService'
   import Noficar from './utils/notificar/Notificar'
-
+  
   export default {
     name: 'login',
-    components:{
-      'dr-notificar':Noficar 
+    components: {
+      'dr-notificar': Noficar
     },
     data() {
       return {
@@ -56,38 +55,29 @@
       onSetRouter() {
         this.$router.push('/relembrar-senha/')
       },
-      async register () {
+      async onLogin() {
         try {
           const response = await AuthenticationService.login({
             email: this.email,
-            password:  this.password
+            password: this.password
           });
           this.$notify({
-              group: 'auth',
-              type: 'info',
-              title: 'Sucesso!:',
-              text: 'Entrando no sistema...',
-            });
-          // this.$store.dispatch('setToken', response.data.token)
-          // this.$store.dispatch('setUser', response.data.user)
-          // this.$router.push({
-          //   name: 'songs'
-          // })
+            group: 'auth',
+            type: 'info',
+            title: 'Sucesso!:',
+            text: 'Entrando no sistema...',
+          });
+          this.$store.dispatch('setToken', response.data.token)
+          this.$store.dispatch('setUser', response.data.user)
         } catch (error) {
-            this.$notify({
-              group: 'auth',
-              type: 'error',
-              title: 'Erro.',
-              text: error.response.data.error,
-            });
-          //this.error = error.response.data.error
+          this.$notify({
+            group: 'auth',
+            type: 'error',
+            title: 'Erro.',
+            text: error.response.data.error,
+          });
         }
       }
     }
   }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-  
-</style>

@@ -1,11 +1,24 @@
 const { User } = require('../models')
+const jwt = require('jsonwebtoken')
+const config = require('../config/config')
+
+//DEVE FICAR NO MODELO----------------------------------------------------------
+const Promise = require('bluebird')
+const bcrypt = Promise.promisifyAll(require('bcrypt-nodejs'))
+let login = {
+    email: "danielprogramic@gmail.com",
+    password: "123",
+  }
+  //DEVE FICAR NO MODELO---------------------------------------------------------- 
+function jwtSignUser(user) {
+  const ONE_WEEK = 60 * 60 * 24 * 7
+  return jwt.sign(user, config.authentication.jwtSecret, {
+    expiresIn: ONE_WEEK
+  })
+}
 
 let trasnformJSON = function(value) {
   return JSON.stringify(value)
-}
-let login = {
-  email: "danielprogramic@gmail.com",
-  password: "123"
 }
 module.exports = {
   register(req, res) {
@@ -22,10 +35,22 @@ module.exports = {
     }
   },
   login(req, res) {
+
     if (trasnformJSON(login) == trasnformJSON(req.body)) {
-      res.send({
-        usuario: trasnformJSON(login)
-      })
+      var hash = bcrypt.hashSync(login.password);
+      let envio = res;
+      bcrypt.compare(req.body.password, hash, function(err, res) {
+        if (res) {
+          envio.send({
+            usuario: {
+              email: req.body.email,
+              password: hash,
+            },
+            token: jwtSignUser(login)
+          })
+        }
+      });
+
     } else {
       res.status(403).send({
         error: 'Login ou Senha Inválido'

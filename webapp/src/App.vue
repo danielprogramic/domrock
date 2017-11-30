@@ -1,6 +1,6 @@
 <template>
   <v-app light>
-    <v-navigation-drawer fixed :mini-variant="true" :clipped="false" v-model="drawer" class="secondary" app>
+    <v-navigation-drawer v-if="$store.state.isUserLoggedIn" fixed :mini-variant="true" :clipped="false" v-model="drawer" class="secondary" app>
       <v-list class="primary">
         <v-list-tile v-for="(item, i) in items" :key="i" value="true">
           <v-list-tile-action>
@@ -12,7 +12,7 @@
         </v-list-tile>
       </v-list>
     </v-navigation-drawer>
-    <v-toolbar dark class="primary" app>
+    <v-toolbar v-if="$store.state.isUserLoggedIn" dark class="primary" app>
       <v-layout row justify-space-between>
         <v-flex xs2 style="margin-top:12px;">
           <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
@@ -32,15 +32,21 @@
         </v-flex>
       </v-layout>
     </v-toolbar>
-    <v-content>
-      <v-container fluid>
+    <v-content  >
+      <div v-if="!$store.state.isUserLoggedIn" class="bg">
         <v-fade-transition mode="out-in">
-          <router-view></router-view>
+          <router-view ></router-view>
+        </v-fade-transition>
+      </div>
+
+      <v-container v-if="$store.state.isUserLoggedIn" fluid>
+        <v-fade-transition mode="out-in">
+          <router-view  ></router-view>
         </v-fade-transition>
       </v-container>
     </v-content>
 
-  <v-navigation-drawer class="secondary" temporary fixed :right="right" v-model="rightDrawer" app>
+  <v-navigation-drawer v-if="$store.state.isUserLoggedIn" class="secondary" temporary fixed :right="right" v-model="rightDrawer" app>
     <v-toolbar flat>
       <v-list>
         <v-list-tile>
@@ -64,7 +70,7 @@
     </v-list>
   </v-navigation-drawer>
 
-    <v-footer :fixed="fixed" app>
+    <v-footer v-if="$store.state.isUserLoggedIn" :fixed="fixed" app>
       <span>&copy;Copyright 2013 ― Todos os direitos reservados </span>
     </v-footer>
   </v-app>
@@ -89,3 +95,6 @@
     }
   }
 </script>
+<style lang="stylus" scoped>
+@import "../stylus/login"
+</style>

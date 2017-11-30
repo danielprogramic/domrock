@@ -1,11 +1,11 @@
 <template>
-<div>Testando aqui caramba</div>
+<div>COMPONENTE INJETADO</div>
 </template>
 <script>
 export default {
   props: [
     'title'
-  ]
+  ],  
 }
 </script>
 <style scoped>
