@@ -12,19 +12,20 @@ module.exports = (app) => {
   })
 
   app.post('/api/register', (req, res) => {
-      if (req.body.email == '') {
-        res.status(400).send({
-          error: 'Invalid registration information'
-        })
-      } else {
-        res.send({
-          message: `Olá ${req.body.email} ! Seu usuario esta registrado!`
-        })
-      }
-    })
-    //POST ROUTE PARA REGISTER*
-    // app.post('/api/register',
-    //   AuthenticationControllerPolicy.register,
-    //   AuthenticationController.register)
+    if (req.body.email == '') {
+      res.status(403).send({
+        error: 'Invalid registration information'
+      })
+    } else {
+      res.send({
+        message: `Olá ${req.body.email} ! Seu usuario esta registrado!`
+      })
+    }
+  })
+
+  //POST ROUTE PARA REGISTER*
+  app.post('/api/login',
+    // AuthenticationControllerPolicy.register,
+    AuthenticationController.login)
 
 }
