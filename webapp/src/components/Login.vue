@@ -67,6 +67,9 @@
           });
           this.$store.dispatch('setToken', response.data.token)
           this.$store.dispatch('setUser', response.data.user)
+          this.$router.push({
+           name: 'Hello'
+          })
         } catch (error) {
           this.$notify({
             group: 'auth',

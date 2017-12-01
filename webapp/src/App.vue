@@ -12,7 +12,7 @@
         </v-list-tile>
       </v-list>
     </v-navigation-drawer>
-    <v-toolbar v-if="$store.state.isUserLoggedIn" dark class="primary" app>
+    <dr-toolbar :loggedIn="$store.state.isUserLoggedIn">
       <v-layout row justify-space-between>
         <v-flex xs2 style="margin-top:12px;">
           <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
@@ -23,65 +23,75 @@
           </center>
         </v-flex>
         <v-flex xs2 style="margin-top:12px;">
-          <v-spacer></v-spacer>
           <div style="float:right;">
             <v-btn icon @click.stop="rightDrawer = !rightDrawer">
               <v-icon>menu</v-icon>
             </v-btn>
           </div>
+          <v-spacer></v-spacer>
+          <div style="float:right;">
+            <v-btn icon @click="onLogout()">
+              <v-icon>person</v-icon>
+            </v-btn>
+          </div>
         </v-flex>
       </v-layout>
-    </v-toolbar>
-    <v-content  >
+    </dr-toolbar>
+    <v-content>
       <div v-if="!$store.state.isUserLoggedIn" class="bg">
         </br>
         <center>
-        <img src="/static/logo-domrock_ti.png" alt="">
+          <img src="/static/logo-domrock_ti.png" alt="">
         </center>
-        <v-fade-transition mode="out-in" >
+        <v-fade-transition mode="out-in">
           <router-view class="cnlogin"></router-view>
         </v-fade-transition>
       </div>
-
       <v-container v-if="$store.state.isUserLoggedIn" fluid>
         <v-fade-transition mode="out-in">
-          <router-view  ></router-view>
+          <router-view></router-view>
         </v-fade-transition>
       </v-container>
     </v-content>
-
-  <v-navigation-drawer v-if="$store.state.isUserLoggedIn" class="secondary" temporary fixed :right="right" v-model="rightDrawer" app>
-    <v-toolbar flat>
-      <v-list>
-        <v-list-tile>
-          <v-list-tile-title  class="title">
-             <v-icon style="color:#0a1f30;"  medium >business_center</v-icon>
-            Módulos
-          </v-list-tile-title>
+  
+    <v-navigation-drawer v-if="$store.state.isUserLoggedIn" class="secondary" temporary fixed :right="right" v-model="rightDrawer" app>
+      <v-toolbar flat>
+        <v-list>
+          <v-list-tile>
+            <v-list-tile-title class="title">
+              <v-icon style="color:#0a1f30;" medium>business_center</v-icon>
+              Módulos
+            </v-list-tile-title>
+          </v-list-tile>
+        </v-list>
+      </v-toolbar>
+      <v-divider></v-divider>
+      <v-list dense class="pt-0">
+        <v-list-tile v-for="item in items" :key="item.title" @click.stop="alert('TesterightDrawer')">
+          <v-list-tile-action>
+            <v-icon>{{ item.icon }}</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+          </v-list-tile-content>
         </v-list-tile>
       </v-list>
-    </v-toolbar>
-    <v-divider></v-divider>
-    <v-list dense class="pt-0">
-      <v-list-tile v-for="item in items" :key="item.title" @click="">
-        <v-list-tile-action>
-          <v-icon>{{ item.icon }}</v-icon>
-        </v-list-tile-action>
-        <v-list-tile-content>
-          <v-list-tile-title>{{ item.title }}</v-list-tile-title>
-        </v-list-tile-content>
-      </v-list-tile>
-    </v-list>
-  </v-navigation-drawer>
-
-    <v-footer v-if="$store.state.isUserLoggedIn" :fixed="fixed" app>
-      <span>&copy;Copyright 2013 ― Todos os direitos reservados </span>
-    </v-footer>
+    </v-navigation-drawer>
+    <dr-footer></dr-footer>
   </v-app>
 </template>
 
 <script>
+  import Toolbar from '@/components/Shared/ToolBar'
+  import Navigation from '@/components/Shared/Navigation'
+  import Footer from '@/components/Shared/Footer'
+  
   export default {
+    components: {
+      'dr-toolbar': Toolbar,
+      'dr-navigation': Navigation,
+      'dr-footer': Footer,
+    },
     data() {
       return {
         clipped: false,
@@ -96,9 +106,19 @@
         rightDrawer: false,
         title: 'Vuetify.js'
       }
+    },
+    methods: {
+      onLogout() {
+        this.$store.dispatch('setToken', null)
+        this.$store.dispatch('setUser', null)
+        this.$router.push({
+          name: 'login'
+        })
+      },
     }
   }
 </script>
+
 <style lang="stylus" scoped>
 @import "../stylus/login"
 </style>

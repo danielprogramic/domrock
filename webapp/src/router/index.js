@@ -21,6 +21,10 @@ export default new Router({
       name: 'relembrarSenha',
       component: RelembrarSenha
     },
+    {
+      path: '/login',
+      redirect: '/login'
+    }
   ],
   mode: 'history'
 })
