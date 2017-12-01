@@ -34,8 +34,12 @@
     </v-toolbar>
     <v-content  >
       <div v-if="!$store.state.isUserLoggedIn" class="bg">
-        <v-fade-transition mode="out-in">
-          <router-view ></router-view>
+        </br>
+        <center>
+        <img src="/static/logo-domrock_ti.png" alt="">
+        </center>
+        <v-fade-transition mode="out-in" >
+          <router-view class="cnlogin"></router-view>
         </v-fade-transition>
       </div>
 

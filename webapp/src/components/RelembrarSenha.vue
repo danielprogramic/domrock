@@ -1,16 +1,13 @@
 <template>
   <div class="relembrarSenha">
-    <dr-notificar></dr-notificar>
+    <!-- <dr-notificar></dr-notificar> -->
+    </br>
     <v-layout column align-center>
       <v-flex>
-        <center>
-        <img src="/static/logo-domrock_ti.png" alt="">
-        </center>
         <v-form name="tab-tracker-form" autocomplete="off">
-          </br>
           <v-text-field label="Informe o seu login (email):"></v-text-field>
-          <v-btn color="info">ENVIAR</v-btn>
-          <v-btn @click="onSetRouter()" color="info">VOLTAR PARA O LOGIN</v-btn>
+          <v-btn color="primary">ENVIAR</v-btn>
+          <v-btn @click="onSetRouter()" color="primary">VOLTAR PARA O LOGIN</v-btn>
         </v-form>
         <!-- <v-card>
             <v-card-media src="/static/bellrock.jpg" height="200px">

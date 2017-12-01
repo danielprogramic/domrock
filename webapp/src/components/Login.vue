@@ -1,19 +1,17 @@
 <template>
   <div class="login">
     <notifications group="auth" position="bottom right" />
-    <dr-notificar></dr-notificar>
+    <!-- <dr-notificar></dr-notificar> -->
+    </br>
     <v-layout column align-center>
       <v-flex>
-                <center>
-        <img src="/static/logo-domrock.png" alt="">
-        </center>
+  
         <v-form name="tab-tracker-form" autocomplete="off">
-          </br>
           <v-text-field label="Email" v-model="email">
           </v-text-field>
           <v-text-field label="Password" type="password" v-model="password" autocomplete="new-password"></v-text-field>
-          <v-btn @click="onLogin" color="info">ENTRAR</v-btn>
-          <v-btn @click="onSetRouter()" color="info">ESQUECI MINHA SENHA</v-btn>
+          <v-btn @click="onLogin" color="primary">ENTRAR</v-btn>
+          <v-btn @click="onSetRouter()" color="primary">ESQUECI MINHA SENHA</v-btn>
         </v-form>
         <!-- <v-card>
             <v-card-media src="/static/bellrock.jpg" height="200px">
