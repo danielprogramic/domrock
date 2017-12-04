@@ -1,6 +1,9 @@
 <template>
   <v-app light>
-    <v-navigation-drawer v-if="$store.state.isUserLoggedIn" fixed :mini-variant="true" :clipped="false" v-model="drawer" class="secondary" app>
+    <dr-navigation :loggedIn="$store.state.isUserLoggedIn" :drawer= "drawer" >
+    </dr-navigation>
+
+    <!-- <v-navigation-drawer v-if="$store.state.isUserLoggedIn" fixed :mini-variant="true" :clipped="false" v-model="drawer" class="secondary" app>
       <v-list class="primary">
         <v-list-tile v-for="(item, i) in items" :key="i" value="true">
           <v-list-tile-action>
@@ -11,8 +14,9 @@
           </v-list-tile-content>
         </v-list-tile>
       </v-list>
-    </v-navigation-drawer>
+    </v-navigation-drawer> -->
     <dr-toolbar :loggedIn="$store.state.isUserLoggedIn">
+   
       <v-layout row justify-space-between>
         <v-flex xs2 style="margin-top:12px;">
           <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
@@ -49,6 +53,7 @@
       </div>
       <v-container v-if="$store.state.isUserLoggedIn" fluid>
         <v-fade-transition mode="out-in">
+
           <router-view></router-view>
         </v-fade-transition>
       </v-container>
@@ -67,7 +72,7 @@
       </v-toolbar>
       <v-divider></v-divider>
       <v-list dense class="pt-0">
-        <v-list-tile v-for="item in items" :key="item.title" @click.stop="alert('TesterightDrawer')">
+        <v-list-tile v-for="item in items" :key="item.title" @click.stop="">
           <v-list-tile-action>
             <v-icon>{{ item.icon }}</v-icon>
           </v-list-tile-action>
@@ -77,7 +82,10 @@
         </v-list-tile>
       </v-list>
     </v-navigation-drawer>
-    <dr-footer></dr-footer>
+    <!-- <dr-footer v-if="$store.state.isUserLoggedIn" ></dr-footer> -->
+     <v-footer v-if="$store.state.isUserLoggedIn" :fixed="fixed" app>
+      <span>&copy;Copyright 2013 ― Todos os direitos reservados </span>
+    </v-footer>
   </v-app>
 </template>
 
@@ -107,8 +115,9 @@
         title: 'Vuetify.js'
       }
     },
+    
     methods: {
-      onLogout() {
+      onLogout() {  
         this.$store.dispatch('setToken', null)
         this.$store.dispatch('setUser', null)
         this.$router.push({

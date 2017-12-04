@@ -8,8 +8,8 @@ Vue.use(Router)
 
 export default new Router({
   routes: [{
-      path: '/',
-      name: 'Hello',
+      path: '/dashboard',
+      name: 'dashboard',
       component: Hello
     }, {
       path: '/login',
@@ -22,8 +22,8 @@ export default new Router({
       component: RelembrarSenha
     },
     {
-      path: '/login',
-      redirect: '/login'
+      path: '*',
+      redirect: 'login'
     }
   ],
   mode: 'history'

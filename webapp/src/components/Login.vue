@@ -66,9 +66,9 @@
             text: 'Entrando no sistema...',
           });
           this.$store.dispatch('setToken', response.data.token)
-          this.$store.dispatch('setUser', response.data.user)
+          this.$store.dispatch('setUser', response.data.usuario)
           this.$router.push({
-           name: 'Hello'
+           name: 'dashboard'
           })
         } catch (error) {
           this.$notify({
