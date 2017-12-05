@@ -43,12 +43,11 @@
     </dr-toolbar>
     <v-content>
       <div v-if="!$store.state.isUserLoggedIn" class="bg">
-        </br>
-        <center>
+        <!-- <center>
           <img src="/static/logo-domrock_ti.png" alt="">
-        </center>
+        </center> -->
         <v-fade-transition mode="out-in">
-          <router-view class="cnlogin"></router-view>
+          <router-view></router-view>
         </v-fade-transition>
       </div>
       <v-container v-if="$store.state.isUserLoggedIn" fluid>
@@ -129,5 +128,5 @@
 </script>
 
 <style lang="stylus" scoped>
-@import "../stylus/login"
+@import "../stylus/main"
 </style>
