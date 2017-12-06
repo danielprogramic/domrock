@@ -9,28 +9,45 @@
   
           <v-flex d-flex xs12 sm6 md6>
             <v-layout column align-center>
-              <v-flex xs12>
-                <img src="../../static/logo-domrock_ti.png" alt="">
-              </v-flex>
               <v-flex xs6>
+                 <img src="../../static/logo-domrock_ti.png" alt="">
                 <div>
-                  <div>
+                  <div class="quote">
                     Se marcares ao largo um lampejo De um farol a mostrar o caminho, Saberá ser o nosso desejo Que jamais tu navegues sozinho
                   </div>
                 </div>
-                <!-- <v-card dark color="primary">
-                  <v-card-text class="texto"></v-card-text>
-                </v-card> -->
+
               </v-flex>
             </v-layout>
           </v-flex>
-  
-  
-          <v-flex d-flex xs12 sm6 md6>
-            <v-card color="blue lighten-2" dark>
-              <v-card-text v-text="lorem.slice(0, 100)">
-              </v-card-text>
-            </v-card>
+          <v-flex xs8 sm3 offset-sm3>
+            <v-layout row>
+                  <v-card > 
+                    <v-card-title primary-title>
+                      <div>
+                        <div class="headline">Entrar</div>
+                        <span class="grey--text"><hr></span>
+                      </div>
+                    </v-card-title>
+                    <v-card-actions>
+                      <v-form >
+                        
+                          <input style="background-color:#ccc;
+                                    padding:10px;
+                                    width:100%;
+                                    border-radius: 4px;
+                                    background-color: #EEEFF1;
+                                    box-shadow: inset 0 1px 2px 0 rgba(0,0,0,0.2);" type="text" name="lname"><br>
+                       
+                        <v-text-field label="Password" type="password" v-model="password" autocomplete="new-password"></v-text-field>
+                        <v-btn @click="onLogin" color="info">ENTRAR</v-btn>
+                        <v-btn @click="onSetRouter()" color="info">ESQUECI MINHA SENHA</v-btn>
+                      </v-form>
+                    </v-card-actions>
+
+                  </v-card>        
+            </v-layout>
+
           </v-flex>
         </v-layout>
       </div>
