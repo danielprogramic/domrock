@@ -1,22 +1,22 @@
 <template>
-  <v-app light>
-    <dr-navigation :loggedIn="$store.state.isUserLoggedIn" :drawer= "drawer" >
+  <v-app id="inspire"  light>
+    <dr-navigation :loggedIn="$store.state.isUserLoggedIn" :drawer="drawer">
     </dr-navigation>
-
+  
     <!-- <v-navigation-drawer v-if="$store.state.isUserLoggedIn" fixed :mini-variant="true" :clipped="false" v-model="drawer" class="secondary" app>
-      <v-list class="primary">
-        <v-list-tile v-for="(item, i) in items" :key="i" value="true">
-          <v-list-tile-action>
-            <v-icon style="color:#fff;" light v-html="item.icon"></v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title style="color:#fff;" v-text="item.title"></v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
-      </v-list>
-    </v-navigation-drawer> -->
+        <v-list class="primary">
+          <v-list-tile v-for="(item, i) in items" :key="i" value="true">
+            <v-list-tile-action>
+              <v-icon style="color:#fff;" light v-html="item.icon"></v-icon>
+            </v-list-tile-action>
+            <v-list-tile-content>
+              <v-list-tile-title style="color:#fff;" v-text="item.title"></v-list-tile-title>
+            </v-list-tile-content>
+          </v-list-tile>
+        </v-list>
+      </v-navigation-drawer> -->
     <dr-toolbar :loggedIn="$store.state.isUserLoggedIn">
-   
+  
       <v-layout row justify-space-between>
         <v-flex xs2 style="margin-top:12px;">
           <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
@@ -44,18 +44,19 @@
     <v-content>
       <div v-if="!$store.state.isUserLoggedIn" class="bg">
         <!-- <center>
-          <img src="/static/logo-domrock_ti.png" alt="">
-        </center> -->
+            <img src="/static/logo-domrock_ti.png" alt="">
+          </center> -->
         <v-fade-transition mode="out-in">
           <router-view></router-view>
         </v-fade-transition>
       </div>
       <v-container v-if="$store.state.isUserLoggedIn" fluid>
         <v-fade-transition mode="out-in">
-
+  
           <router-view></router-view>
         </v-fade-transition>
       </v-container>
+      <div style="margin-top:-30px;margin-left:2px;position:absolute;color:#fff"><div>&copy;Copyright 2013 ― Todos os direitos reservados</div> </div>
     </v-content>
   
     <v-navigation-drawer v-if="$store.state.isUserLoggedIn" class="secondary" temporary fixed :right="right" v-model="rightDrawer" app>
@@ -82,9 +83,9 @@
       </v-list>
     </v-navigation-drawer>
     <!-- <dr-footer v-if="$store.state.isUserLoggedIn" ></dr-footer> -->
-     <v-footer v-if="$store.state.isUserLoggedIn" :fixed="fixed" app>
-      <span>&copy;Copyright 2013 ― Todos os direitos reservados </span>
-    </v-footer>
+   
+      
+  
   </v-app>
 </template>
 
@@ -114,9 +115,9 @@
         title: 'Vuetify.js'
       }
     },
-    
+  
     methods: {
-      onLogout() {  
+      onLogout: () => {
         this.$store.dispatch('setToken', null)
         this.$store.dispatch('setUser', null)
         this.$router.push({
