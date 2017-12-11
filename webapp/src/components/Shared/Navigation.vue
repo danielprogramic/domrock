@@ -23,7 +23,6 @@
     ],
     data() {
       return {
-     
         items: [{
           icon: 'library_add',
           title: 'Biblioteca'

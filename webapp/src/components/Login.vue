@@ -1,28 +1,28 @@
 <template>
   <div class="login">
-    <!-- <notifications group="auth" position="bottom right" /> -->
+    <notifications group="auth" position="bottom right" />
     <!-- <dr-notificar></dr-notificar> -->
     <!-- grid-list-md: para colocar na forma de cima-->
     <!-- grid-list-md fluid fill-height -->
     <!-- <v-container  fluid fill-height>
-                  <v-layout row wrap>
-                    <v-flex xs12 sm6 md4>
-                      <v-card color="purple" dark>
-                        <v-card-title primary class="title">Lorem</v-card-title>
-                        <v-card-text
-                          v-text="lorem">
-                        </v-card-text>
-                      </v-card>
-                    </v-flex>
-                    <v-flex  xs12 sm6 md3 >
-                      <v-card color="blue lighten-2" dark>
-                        <v-card-text
-                          v-text="lorem.slice(0, 100)">
-                        </v-card-text>
-                      </v-card>
-                    </v-flex>
-                  </v-layout>
-                </v-container> -->
+                    <v-layout row wrap>
+                      <v-flex xs12 sm6 md4>
+                        <v-card color="purple" dark>
+                          <v-card-title primary class="title">Lorem</v-card-title>
+                          <v-card-text
+                            v-text="lorem">
+                          </v-card-text>
+                        </v-card>
+                      </v-flex>
+                      <v-flex  xs12 sm6 md3 >
+                        <v-card color="blue lighten-2" dark>
+                          <v-card-text
+                            v-text="lorem.slice(0, 100)">
+                          </v-card-text>
+                        </v-card>
+                      </v-flex>
+                    </v-layout>
+                  </v-container> -->
   
     <v-container grid-list-md fill-height>
       <div>
@@ -38,7 +38,7 @@
                 <div class="rectangle-3">
                 </div>
                 <div class="title_text">
-                   Se marcares ao largo um lampejo De um farol a mostrar o caminho, Saberá ser o nosso desejo Que jamais tu navegues sozinho <br>
+                  Se marcares ao largo um lampejo De um farol a mostrar o caminho, Saberá ser o nosso desejo Que jamais tu navegues sozinho <br>
                   <span class="autor"> AUTOR, 2010 - SÂO PAULO SP</span>
                 </div>
               </div>
@@ -48,53 +48,57 @@
   
           <!-- <v-layout  column align-center> -->
           <v-flex xs12 sm6 md4>
-
-           <v-card height="300px">
-             <v-container fill-height>
-               <v-layout align-center justify-center>
-                 <v-card-text>
-                  <label for="">Email</label>
-                  <input class="layout_input" type="text" name="lname"><br>
-                  <label for="">Senha</label>
-                  <div>
-                    <input class="layout_input" type="text" name="lname">
-                    <v-btn @click="onLogin" color="primary">Entrar</v-btn>
-                  </div>
-                 </v-card-text>
-               </v-layout>
-             </v-container>
-           </v-card>
-
-            <!-- <v-card>
+            <v-card height="300px">
               <v-card-title primary-title>
                 <div>
-                  <div class="headline">Entrar</div>
+                  <div style="font-weight: 900;padding-left:15px;" class="headline">{{msg}}</div>
                 </div>
               </v-card-title>
-              <v-card-actions>
-                <v-form >
-                  <label for="">Email</label>
-                  <input class="layout_input" type="text" name="lname"><br>
-                  <label for="">Senha</label>
+              <v-container >
+                <v-layout align-center justify-center>
+                  <v-card-text>
+                    <label for="">Email</label><br>
+                    <input style="width:94%;" class="layout_input" type="text" v-model="email" ><br><br>
+                    <label for="">Senha</label>
+                    <div>
+                      <input style="width:60%;" class="layout_input"  type="password" v-model="password" >
+                      <v-btn style="width:30%;" @click="onLogin" color="primary">Entrar</v-btn>
+                    </div>
+                  </v-card-text>
+                </v-layout>
+              </v-container>
+            </v-card>
+            <!-- <v-card>
+                <v-card-title primary-title>
                   <div>
-                    <input class="layout_input" type="text" name="lname">
-                    <v-btn @click="onLogin" color="primary">Entrar</v-btn>
+                    <div class="headline">Entrar</div>
                   </div>
-                </v-form>
-              </v-card-actions>
-            </v-card> -->
+                </v-card-title>
+                <v-card-actions>
+                  <v-form >
+                    <label for="">Email</label>
+                    <input class="layout_input" type="text" name="lname"><br>
+                    <label for="">Senha</label>
+                    <div>
+                      <input class="layout_input" type="text" name="lname">
+                      <v-btn @click="onLogin" color="primary">Entrar</v-btn>
+                    </div>
+                  </v-form>
+                </v-card-actions>
+              </v-card> -->
           </v-flex>
           <!-- </v-layout> -->
+  
         </v-layout>
   
-<!--   
-        <v-layout fluid style="height:100%;position:fixed;">
-          <v-flex xs12 sm12 md12>
-            <v-card dark color="primary">
-              <v-card-text>© Copyright 2013 ― Todos os direitos reservados</v-card-text>
-            </v-card>
-          </v-flex>
-        </v-layout> -->
+        <!--   
+          <v-layout fluid style="height:100%;position:fixed;">
+            <v-flex xs12 sm12 md12>
+              <v-card dark color="primary">
+                <v-card-text>© Copyright 2013 ― Todos os direitos reservados</v-card-text>
+              </v-card>
+            </v-flex>
+          </v-layout> -->
   
       </div>
     </v-container>
@@ -102,36 +106,36 @@
   
   
     <!-- <v-layout column align-center>
-                          <v-flex lg12 sm6 offset-sm3>
-                            <v-card>
-                              <v-card-title primary-title>
-                                <div>
-                                  <h3 class="headline mb-0"><b>{{msg}}</b></h3>
-                                </div>
-                              </v-card-title>
-                              <v-form name="tab-tracker-form" autocomplete="off">
-                                <v-text-field label="Email" v-model="email">
-                                </v-text-field>
-                                <v-text-field label="Password" type="password" v-model="password" autocomplete="new-password"></v-text-field>
-                              </v-form>
-                              <v-card-actions>
-                                <v-btn @click="onLogin" color="info">ENTRAR</v-btn>
-                                <v-btn @click="onSetRouter()" color="info">ESQUECI MINHA SENHA</v-btn>
-                              </v-card-actions>
-                            </v-card>
-                          </v-flex>
-                        </v-layout> -->
+                            <v-flex lg12 sm6 offset-sm3>
+                              <v-card>
+                                <v-card-title primary-title>
+                                  <div>
+                                    <h3 class="headline mb-0"><b>{{msg}}</b></h3>
+                                  </div>
+                                </v-card-title>
+                                <v-form name="tab-tracker-form" autocomplete="off">
+                                  <v-text-field label="Email" v-model="email">
+                                  </v-text-field>
+                                  <v-text-field label="Password" type="password" v-model="password" autocomplete="new-password"></v-text-field>
+                                </v-form>
+                                <v-card-actions>
+                                  <v-btn @click="onLogin" color="info">ENTRAR</v-btn>
+                                  <v-btn @click="onSetRouter()" color="info">ESQUECI MINHA SENHA</v-btn>
+                                </v-card-actions>
+                              </v-card>
+                            </v-flex>
+                          </v-layout> -->
   
   
   
   
     <!-- <v-form name="tab-tracker-form" autocomplete="off">
-                                      <v-text-field label="Email" v-model="email">
-                                      </v-text-field>
-                                      <v-text-field label="Password" type="password" v-model="password" autocomplete="new-password"></v-text-field>
-                                      <v-btn @click="onLogin" color="primary">ENTRAR</v-btn>
-                                      <v-btn @click="onSetRouter()" color="primary">ESQUECI MINHA SENHA</v-btn>
-                                    </v-form> -->
+                                        <v-text-field label="Email" v-model="email">
+                                        </v-text-field>
+                                        <v-text-field label="Password" type="password" v-model="password" autocomplete="new-password"></v-text-field>
+                                        <v-btn @click="onLogin" color="primary">ENTRAR</v-btn>
+                                        <v-btn @click="onSetRouter()" color="primary">ESQUECI MINHA SENHA</v-btn>
+                                      </v-form> -->
   
   
   
@@ -153,7 +157,6 @@
         email: '',
         password: '',
         status: false,
-        lorem: `Lorem ipsum dolor sit amet, mel at clita quando. Te sit oratio vituperatoribus, nam ad ipsum posidonium mediocritatem, explicari dissentiunt cu mea. Repudiare disputationi vim in, mollis iriure nec cu, alienum argumentum ius ad. Pri eu justo aeque torquatos.`
       }
     },
     methods: {
