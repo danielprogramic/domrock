@@ -48,7 +48,7 @@ npm test
   │     └─auth
   └─static            # static folder for image static for system
 ```
-## FRAMEWORK UI FOR PLATAFORM
+## FRAMEWORK UI
 > Material Component Framework
 
 ## Folder server  ---------------------
