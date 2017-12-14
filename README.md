@@ -61,7 +61,7 @@ npm test
 npm install
 # serve with nodemon reload server
 npm start
-# teste api
+# test api
 
 
 
